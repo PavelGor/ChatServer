@@ -12,8 +12,12 @@ public class Server {
 
         while (true) {
             Socket socket = serverSocket.accept();
+            InputStream inputStream = socket.getInputStream();
+            OutputStream outputStream = socket.getOutputStream();
 
-            ClientHandler clientHandler = new ClientHandler(socket);
+            ClientHandler clientHandler = new ClientHandler();
+            clientHandler.setInputStream(inputStream);
+            clientHandler.setOutputStream(outputStream);
 
             Thread thread = new Thread(clientHandler);
             thread.start();
