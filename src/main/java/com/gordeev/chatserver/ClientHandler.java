@@ -1,14 +1,13 @@
 package com.gordeev.chatserver;
 
-import com.gordeev.chatserver.Entity.Client;
+import com.gordeev.chatserver.entity.Client;
+import com.gordeev.chatserver.entity.ClientsList;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ClientHandler implements Runnable {
-
-    private static List<Client> clients = new ArrayList<>(); //static or Singlton for class Clients??? what is the best way?
+    private List<Client> clients = ClientsList.getClients();
     private Client client = new Client();
     private InputStream inputStream;
     private OutputStream outputStream;
@@ -39,6 +38,9 @@ public class ClientHandler implements Runnable {
                 }
                 message = reader.readLine();
             }
+
+            clients.remove(client);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

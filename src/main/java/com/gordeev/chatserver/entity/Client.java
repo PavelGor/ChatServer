@@ -1,4 +1,4 @@
-package com.gordeev.chatserver.Entity;
+package com.gordeev.chatserver.entity;
 
 import java.io.BufferedWriter;
 
